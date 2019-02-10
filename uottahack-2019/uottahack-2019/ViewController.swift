@@ -74,7 +74,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
 		videoScene.addChild(videoNode)
 
-
 		guard let video = container.childNode(withName: "video", recursively: true) else { return }
 		video.geometry?.firstMaterial?.diffuse.contents = videoScene
 
