@@ -9,6 +9,7 @@
 import UIKit
 import SceneKit
 import ARKit
+import AVFoundation
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
@@ -34,7 +35,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewWillAppear(animated)
         
         // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
+        let configuration = ARImageTrackingConfiguration()
+		guard let arImage = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else{
+			return
+		}
+
+		configuration.trackingImages = arImage
 
         // Run the view's session
         sceneView.session.run(configuration)
@@ -46,6 +52,38 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
+
+	func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+		guard anchor is ARImageAnchor else { return }
+		guard let container = sceneView.scene.rootNode.childNode(withName: "container", recursively: false) else { return }
+		container.removeFromParentNode()
+		node.addChildNode(container)
+		container.isHidden = false
+
+		let videoURL = Bundle.main.url(forResource: "slack-vid", withExtension: "mp4")!
+		let videoPlayer = AVPlayer(url: videoURL)
+
+		let videoScene = SKScene(size: CGSize(width: 1280.0, height: 536.0))
+		let videoNode = SKVideoNode(avPlayer: videoPlayer)
+
+
+		videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
+		videoNode.size = videoScene.size
+		videoNode.yScale = -1
+		videoNode.play()
+
+		videoScene.addChild(videoNode)
+
+
+		guard let video = container.childNode(withName: "video", recursively: true) else { return }
+		print("SLACK!")
+		video.geometry?.firstMaterial?.diffuse.contents = videoScene
+		container.addChildNode(video)
+
+
+
+		
+	}
 
     // MARK: - ARSCNViewDelegate
     
