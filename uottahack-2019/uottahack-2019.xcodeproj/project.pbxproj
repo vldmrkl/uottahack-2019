@@ -15,6 +15,7 @@
 		2DC11C5F22100B4500A584B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC11C5D22100B4500A584B6 /* LaunchScreen.storyboard */; };
 		2DC11C6722100C6100A584B6 /* slack-vid.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2DC11C6622100C6100A584B6 /* slack-vid.mp4 */; };
 		2DC11C692210161900A584B6 /* spider-man.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2DC11C682210161900A584B6 /* spider-man.mp4 */; };
+		2DC11C6B2210618600A584B6 /* uottahack-vid.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2DC11C6A2210618600A584B6 /* uottahack-vid.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		2DC11C6022100B4500A584B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DC11C6622100C6100A584B6 /* slack-vid.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "slack-vid.mp4"; path = "../../../../../Desktop/slack-vid.mp4"; sourceTree = "<group>"; };
 		2DC11C682210161900A584B6 /* spider-man.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "spider-man.mp4"; path = "../../../../../Desktop/spider-man.mp4"; sourceTree = "<group>"; };
+		2DC11C6A2210618600A584B6 /* uottahack-vid.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "uottahack-vid.mp4"; path = "../../../../../Desktop/uottahack-vid.mp4"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				2DC11C682210161900A584B6 /* spider-man.mp4 */,
 				2DC11C6622100C6100A584B6 /* slack-vid.mp4 */,
+				2DC11C6A2210618600A584B6 /* uottahack-vid.mp4 */,
 				2DC11C5222100B4400A584B6 /* AppDelegate.swift */,
 				2DC11C5422100B4400A584B6 /* art.scnassets */,
 				2DC11C5622100B4400A584B6 /* ViewController.swift */,
@@ -134,6 +137,7 @@
 				2DC11C5522100B4400A584B6 /* art.scnassets in Resources */,
 				2DC11C5F22100B4500A584B6 /* LaunchScreen.storyboard in Resources */,
 				2DC11C5C22100B4500A584B6 /* Assets.xcassets in Resources */,
+				2DC11C6B2210618600A584B6 /* uottahack-vid.mp4 in Resources */,
 				2DC11C6722100C6100A584B6 /* slack-vid.mp4 in Resources */,
 				2DC11C5A22100B4400A584B6 /* Main.storyboard in Resources */,
 				2DC11C692210161900A584B6 /* spider-man.mp4 in Resources */,

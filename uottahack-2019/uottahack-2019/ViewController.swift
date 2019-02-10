@@ -14,6 +14,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
 	@IBOutlet var sceneView: ARSCNView!
 
+	let slackVideo = "slack-vid"
+	let spiderManVideo = "spider-man"
+
+	var currentVideo = "slack-vid"
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -35,11 +40,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
 		// Create a session configuration
 		let configuration = ARImageTrackingConfiguration()
-		guard let arImage = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else{
+		guard let arImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else{
 			return
 		}
 
-		configuration.trackingImages = arImage
+		configuration.trackingImages = arImages
+
 
 		// Run the view's session
 		sceneView.session.run(configuration)
@@ -54,13 +60,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
 	func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
 		guard anchor is ARImageAnchor else { return }
+		guard let imageAnchor = anchor as? ARImageAnchor else { return }
+
+		let referenceImage = imageAnchor.referenceImage
+		let imageName = referenceImage.name ?? "no name"
+
+		setVideoSourceFor(imageName)
+
 		guard let container = sceneView.scene.rootNode.childNode(withName: "container", recursively: false) else { return }
 
 		container.removeFromParentNode()
 		node.addChildNode(container)
 		container.isHidden = false
+		print(currentVideo)
 
-		let videoURL = Bundle.main.url(forResource: "spider-man", withExtension: "mp4")!
+		let videoURL = Bundle.main.url(forResource: currentVideo, withExtension: "mp4")!
 		let videoPlayer = AVPlayer(url: videoURL)
 
 		let videoScene = SKScene(size: CGSize(width: 1280.0, height: 1072.0))
@@ -78,6 +92,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 		video.geometry?.firstMaterial?.diffuse.contents = videoScene
 
 		container.addChildNode(video)
+	}
+
+	func setVideoSourceFor(_ imgName: String){
+		switch imgName {
+		case "slack":
+			currentVideo = "slack-vid"
+		case "poster":
+			currentVideo = "spider-man"
+		case "uottahack":
+			currentVideo = "uottahack-vid"
+		case "uottahack-2":
+			currentVideo = "uottahack-vid"
+		default:
+			currentVideo = "slack-vid"
+		}
+		print(currentVideo)
 	}
 
 	// MARK: - ARSCNViewDelegate
