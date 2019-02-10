@@ -55,6 +55,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 	func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
 		guard anchor is ARImageAnchor else { return }
 		guard let container = sceneView.scene.rootNode.childNode(withName: "container", recursively: false) else { return }
+
 		container.removeFromParentNode()
 		node.addChildNode(container)
 		container.isHidden = false
@@ -76,11 +77,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
 		guard let video = container.childNode(withName: "video", recursively: true) else { return }
 		video.geometry?.firstMaterial?.diffuse.contents = videoScene
+
 		container.addChildNode(video)
-
-
-
-
 	}
 
 	// MARK: - ARSCNViewDelegate
